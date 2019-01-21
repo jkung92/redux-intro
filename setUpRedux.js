@@ -3,7 +3,7 @@ let INITIAL_STATE = { mood: 'd(￣▽￣o)' };
 function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'happy':
-      return { ...state, mood: '(￣个￣)' };
+      return { ...state, mood: '⊂◉‿◉つ' };
     case 'sad':
       return { ...state, mood: '(ಥ﹏ಥ)' };
     case 'angry':

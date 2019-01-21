@@ -4,36 +4,36 @@ window.onload = function() {
   let angryButton = document.getElementById('angry');
   let confusedButton = document.getElementById('confused');
   let display = document.getElementById('face');
+
+  // Extra animation variables, not related to exercise
   let tableFlip = document.getElementById('table-flip');
   let counterTable = 0;
-  let rollOver = document.getElementById('roll-over');
+  let dance = document.getElementById('dance');
   let counter = 0;
 
-  function setMood() {
-    let mood = store.getState().mood;
-    display.innerText = mood;
-  }
+  let tableArr = '(╯ಠ‿ಠ)╯︵┻━┻,┬─┬ノ(ಠ_ಠノ)'.split(',');
+  let danceArr = '└|ﾟεﾟ|┐,┌|ﾟεﾟ|┘'.split(',');
 
-  // let rollOverArr = '(°o°),(°o。),(。o。),(。o°),(°o°),(°o。),(。o。),(。o°)'.split(
-  //   ','
-  // );
+  setInterval(() => {
+    dance.innerText = danceArr[counter];
+    counter++;
+    if (counter >= danceArr.length) counter = 0;
+  }, 500);
 
-  // let tableArr = '(╯ಠ_ಠ)╯︵ ┳━┳,(╯ಠ‿ಠ)╯︵┻━┻,┳━┳ノ( OωOノ),(┛ಠДಠ)┛彡┻━┻'.split(
-  //   ','
-  // );
-  let tableArr = '(┛ಠДಠ)┛彡┻━┻(ʘᗩʘ’),(ಠ ∩ಠ)┳━┳ノ( OωOノ)'.split(',');
-
-  // setInterval(() => {
-  //   rollOver.innerText = rollOverArr[counter];
-  //   counter++;
-  //   if (counter >= rollOverArr.length) counter = 0;
-  // }, 100);
   setInterval(() => {
     tableFlip.innerText = tableArr[counterTable];
     counterTable++;
     if (counterTable >= tableArr.length) counterTable = 0;
   }, 1000);
+  // End of animations (not related to exercise)
 
+  // updates the store state
+  function setMood() {
+    let mood = store.getState().mood;
+    display.innerText = mood;
+  }
+
+  // store.subscribe runs setMood AFTER every dispatch
   let unsubscribe = store.subscribe(setMood);
 
   happyButton.addEventListener('click', () => {
